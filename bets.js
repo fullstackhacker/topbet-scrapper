@@ -1,7 +1,9 @@
 "use strict";
 
 const request = require('request');
-const FetchError = require('./exceptions').FetchError;
+const exceptions = require('./exceptions');
+const ParseError = exceptions.ParseError;
+const FetchError = exceptions.FetchError;
 
 const getBets = (url, scrapper, next) => {
   return next => {
@@ -13,9 +15,19 @@ const getBets = (url, scrapper, next) => {
     };
     request(options, (err, response, body) => {
       if (err){
-        throw new FetchError("Failed to fetch the lines.");
+        next(new FetchError("Network failure fetching lines."), false);
       }
-      return next(scrapper(body));
+      try {
+        return next(null, scrapper(body));
+      }
+      catch(exception) {
+        if (exception instanceof ParseError) {
+          return next(exception, false);
+        }
+        else {
+          throw exception;
+        }
+      }
     });
   };
 };
