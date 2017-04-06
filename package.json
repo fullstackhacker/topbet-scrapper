@@ -1,5 +1,5 @@
 {
-  "name": "topbet-npm",
+  "name": "topbet",
   "version": "1.0.0",
   "description": "TopBet Scrapper",
   "main": "index.js",
