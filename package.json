@@ -1,6 +1,6 @@
 {
   "name": "topbet",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TopBet Scrapper",
   "main": "index.js",
   "scripts": {
