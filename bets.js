@@ -5,7 +5,7 @@ const exceptions = require('./exceptions');
 const ParseError = exceptions.ParseError;
 const FetchError = exceptions.FetchError;
 
-const getBets = (url, scrapper, next) => {
+const getBets = (url, scrapper) => {
   return next => {
     const options = {
       url: url,
